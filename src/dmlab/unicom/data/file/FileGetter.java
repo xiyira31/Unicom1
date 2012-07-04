@@ -47,4 +47,9 @@ public class FileGetter{
 		this.br.close();
 	}
 	
+	public File getFile()
+	{
+		return this.file;
+	}
+	
 }

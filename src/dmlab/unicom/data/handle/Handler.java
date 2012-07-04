@@ -7,11 +7,14 @@ import java.text.ParseException;
 
 import dmlab.unicom.data.file.FileCreater;
 import dmlab.unicom.data.file.FileGetter;
+import dmlab.unicom.data.util.SelectIndex;
 
 public abstract class Handler {
 	
 	protected FileGetter fg;
 	protected FileCreater fc;
+	private String inputpath;
+	private String outputpath;
 	
 	public Handler(){
 		
@@ -33,8 +36,10 @@ public abstract class Handler {
 	private void init(String input, String output, Boolean append)
 	{
 		try {
-			fg = new FileGetter(input);
-			fc = new FileCreater(output,append);
+			inputpath = SelectIndex.INPUTPATH;
+			outputpath = SelectIndex.OUTPUTPATH;
+			fg = new FileGetter(inputpath + input);
+			fc = new FileCreater(outputpath + output,append);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

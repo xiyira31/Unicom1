@@ -7,6 +7,7 @@ public class GsmCallMonthData {
 	private String userid = "";
 	private String feedate = "";
 	private Long duration;
+	private Integer calltime = 1; // 创建时会就默认一个电话
 	
 	public GsmCallMonthData(){}
 	
@@ -20,13 +21,15 @@ public class GsmCallMonthData {
 	public void addDuration(String[] line)
 	{
 		this.duration += Long.valueOf(line[SelectIndex.GSM_CALL_DURATION]);
+		this.calltime++;
 	}
 	
 	public String toString()
 	{
 		StringBuilder sb = new StringBuilder();
 		sb.append(userid).append(SelectIndex.SPLITER).append(feedate)
-		  .append(SelectIndex.SPLITER).append(duration);
+		  .append(SelectIndex.SPLITER).append(duration)
+		  .append(SelectIndex.SPLITER).append(calltime);
 		return sb.toString();
 	}
 }

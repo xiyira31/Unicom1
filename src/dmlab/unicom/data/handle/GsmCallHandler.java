@@ -32,6 +32,7 @@ public class GsmCallHandler extends Handler{
 	@Override
 	public void handle() throws IOException {
 		// TODO Auto-generated method stub
+		System.out.print(fg.getFile().getName());
 		String s = "";
 		Map<String, GsmCallMonthData> map = new HashMap();
 		while((s = fg.readLine()) != null)
