@@ -17,6 +17,7 @@ import java.util.Set;
 import dmlab.unicom.data.file.FileCreater;
 import dmlab.unicom.data.file.FileGetter;
 import dmlab.unicom.data.handle.GatherFeeHandler;
+import dmlab.unicom.data.handle.GsmCallHandler;
 import dmlab.unicom.data.handle.GsmCallMergeHandler;
 import dmlab.unicom.data.handle.Handler;
 import dmlab.unicom.data.handle.UserAliveTimeHandler;
@@ -39,7 +40,25 @@ public class Test {
 	 */
 	public static void main(String[] args) throws IOException, ParseException {
 		// TODO Auto-generated method stub
-		Handler handler = new GsmCallMergeHandler();
+		Handler handler = new GsmCallHandler("bf_gsm_call_201205.txt","gsm_call_new.txt",false);
+		handler.handle();
+		handler = new GsmCallHandler("bf_gsm_call_201204.txt","gsm_call_new.txt",true);
+		handler.handle();
+		handler = new GsmCallHandler("bf_gsm_call_201203.txt","gsm_call_new.txt",true);
+		handler.handle();
+		handler = new GsmCallHandler("bf_gsm_call_201202.txt","gsm_call_new.txt",true);
+		handler.handle();
+		handler = new GsmCallHandler("bf_gsm_call_201201.txt","gsm_call_new.txt",true);
+		handler.handle();
+		handler = new GsmCallHandler("bf_gsm_call_201112.txt","gsm_call_new.txt",true);
+		handler.handle();
+		handler = new GsmCallHandler("bf_gsm_call_201111.txt","gsm_call_new.txt",true);
+		handler.handle();
+		handler = new GsmCallHandler("bf_gsm_call_201110.txt","gsm_call_new.txt",true);
+		handler.handle();
+		handler = new GsmCallHandler("bf_gsm_call_201109.txt","gsm_call_new.txt",true);
+		handler.handle();
+		handler = new GsmCallHandler("bf_gsm_call_201108.txt","gsm_call_new.txt",true);
 		handler.handle();
 //		Handler handler = new GatherFeeHandler("l_user_info_new.txt","user_info.txt",false);
 //		handleUserInfo("l_user_info_new.txt","user_info.txt",false);
