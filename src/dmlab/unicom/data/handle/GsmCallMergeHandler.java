@@ -1,6 +1,8 @@
 package dmlab.unicom.data.handle;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +26,7 @@ import dmlab.unicom.data.util.SelectIndex;
 public class GsmCallMergeHandler extends Handler{
 
 	public GsmCallMergeHandler(){
-		super(SelectIndex.INPUTPATH + "bf_gsm_call_merge_format_new.txt",SelectIndex.OUTPUTPATH + "bf_gsm_call_merge_format_with_rate.txt");
+		super("bf_gsm_call_merge_format_new.txt","bf_gsm_call_merge_format_with_rate.txt");
 	}
 	
 	public GsmCallMergeHandler(String input, String output){
@@ -34,23 +36,70 @@ public class GsmCallMergeHandler extends Handler{
 		super(input,output,append);
 	}
 	
+	public void handleNew() throws NumberFormatException, IOException{
+		String s = null;
+		UserInfoHandler userHandler = new UserInfoHandler();
+		Map<String, Integer> isVaildMap = userHandler.vaildMap();
+		
+		while((s = fg.readLine()) != null)
+		{
+			String[] line = s.split(SelectIndex.SPLITER);
+			String spliter = SelectIndex.SPLITER;
+			StringBuilder sb = new StringBuilder();
+			String userid = line[SelectIndex.GSM_CALL_FORMAT_NEW_USERID];
+			Integer inFriend = Integer.valueOf(line[SelectIndex.GSM_CALL_FORMAT_NEW_IN_FRIEND]);
+			Integer outFriend = Integer.valueOf(line[SelectIndex.GSM_CALL_FORMAT_NEW_OUT_FRIEND]);
+			Integer totalFriend = inFriend + outFriend;
+			Integer inCalltime = Integer.valueOf(line[SelectIndex.GSM_CALL_FORMAT_NEW_IN_CALLTIME]);
+			Integer outCalltime = Integer.valueOf(line[SelectIndex.GSM_CALL_FORMAT_NEW_OUT_CALLTIME]);
+			Integer totalCalltime = inCalltime + outCalltime;
+			Integer inDurtion = Integer.valueOf(line[SelectIndex.GSM_CALL_FORMAT_NEW_IN_DURTION]);
+			Integer outDurtion = Integer.valueOf(line[SelectIndex.GSM_CALL_FORMAT_NEW_OUT_DURTION]);
+			Integer totalDurtion = inDurtion + outDurtion;
+			if(totalFriend > 0)
+			{
+				inFriend = inFriend*100/totalFriend;
+				outFriend = outFriend*100/totalFriend;
+			}
+			if(totalCalltime > 0)
+			{
+				inCalltime = inCalltime*100/totalCalltime;
+				outCalltime = outCalltime*100/totalCalltime;
+			}
+			if(totalDurtion > 0)
+			{
+				inDurtion = inDurtion*100/totalDurtion;
+				outDurtion = outDurtion*100/totalDurtion;
+			}
+			sb.append(userid).append(SelectIndex.SPLITER);
+			sb.append(inFriend).append(SelectIndex.SPLITER);
+			sb.append(outFriend).append(SelectIndex.SPLITER);
+			sb.append(inCalltime).append(SelectIndex.SPLITER);
+			sb.append(outCalltime).append(SelectIndex.SPLITER);
+			sb.append(inDurtion).append(SelectIndex.SPLITER);
+			sb.append(outDurtion).append(SelectIndex.SPLITER);
+			
+			if(isVaildMap.containsKey(userid))
+			{
+				sb.append(isVaildMap.get(userid));
+			}
+			else
+			{
+				sb.append(-1);
+			}
+			fc.writeLine(sb.toString());
+		}
+		fg.close();
+		fc.close();
+	}
+	
 	@Override
 	public void handle() throws IOException {
 		// TODO Auto-generated method stub
 		String s = null;
 		
-		Map<String, Integer> isVaildMap = new HashMap();
-		FileGetter userinfofg = new FileGetter(SelectIndex.INPUTPATH + "l_user_info_new.txt");
-		while((s = userinfofg.readLine()) != null)
-		{
-			String[] as = s.split(SelectIndex.SPLITER);
-			if(as[SelectIndex.USER_INFO_IFVALID].length() > 0)
-				isVaildMap.put(as[SelectIndex.USER_INFO_USERID], 
-					Integer.valueOf(as[SelectIndex.USER_INFO_IFVALID]));
-			else
-				isVaildMap.put(as[SelectIndex.USER_INFO_USERID], 
-						-1);
-		}
+		UserInfoHandler userHandler = new UserInfoHandler();
+		Map<String, Integer> isVaildMap = userHandler.vaildMap();
 		
 		while((s = fg.readLine()) != null)
 		{
@@ -130,7 +179,6 @@ public class GsmCallMergeHandler extends Handler{
 		}
 		fg.close();
 		fc.close();
-		userinfofg.close();
 	}
 
 }
