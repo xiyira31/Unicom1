@@ -3,6 +3,7 @@ package dmlab.unicom.data.statistics;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,6 +13,9 @@ import java.util.Map.Entry;
 
 import dmlab.unicom.data.file.FileCreater;
 import dmlab.unicom.data.file.FileGetter;
+import dmlab.unicom.data.handle.Handler;
+import dmlab.unicom.data.handle.StatChangeRateHandler;
+import dmlab.unicom.data.handle.StatClassifyGroupHandler;
 import dmlab.unicom.data.structer.ClassifyGroup;
 import dmlab.unicom.data.structer.OffRate;
 import dmlab.unicom.data.structer.ChangeRate;
@@ -20,8 +24,8 @@ import dmlab.unicom.data.util.SelectIndex;
 
 public class UserInfoStat {
 	
-	public static void main(String[] args) throws IOException {
-		statOffRate("l_user_info_new.txt","offRate_vipname.txt",SelectIndex.USER_INFO_VIPNAME,false);
+	public static void main(String[] args) throws IOException, ParseException {
+		//statOffRate("l_user_info_new.txt","offRate_vipname.txt",SelectIndex.USER_INFO_VIPNAME,false);
 		// TODO Auto-generated method stub
 		//statCountType("l_user_info_new.txt","statCustLevelType.txt",26,false);
 		//statCountType("l_user_info_new.txt","statServingNameType.txt",SelectIndex.USER_INFO_SERVINGNAME,false);
@@ -87,7 +91,9 @@ public class UserInfoStat {
 //			"classify_user_info_alivetime.txt",
 //			4,1,
 //			SelectIndex.CLASSIFY_GROUPS_ALIVE,false);
-		
+//		Handler handler = new StatChangeRateHandler("gsm_call_new.txt","每月通话变化率.txt",0,1,3);
+		Handler handler = new StatClassifyGroupHandler("每月通话变化率.txt","每月通话变化率_分组.txt",4,1,SelectIndex.CLASSIFY_GROUPS_FEE);
+		handler.handle();
 	}
 	
 	public static void statCountType(String inputFile, String outputFile,Integer countType, Boolean append) throws IOException
