@@ -13,9 +13,11 @@ import java.util.Map.Entry;
 
 import dmlab.unicom.data.file.FileCreater;
 import dmlab.unicom.data.file.FileGetter;
+import dmlab.unicom.data.handle.GsmCallMergeHandler;
 import dmlab.unicom.data.handle.Handler;
 import dmlab.unicom.data.handle.StatChangeRateHandler;
 import dmlab.unicom.data.handle.StatClassifyGroupHandler;
+import dmlab.unicom.data.handle.StatCountTypeHandler;
 import dmlab.unicom.data.structer.ClassifyGroup;
 import dmlab.unicom.data.structer.OffRate;
 import dmlab.unicom.data.structer.ChangeRate;
@@ -92,8 +94,20 @@ public class UserInfoStat {
 //			4,1,
 //			SelectIndex.CLASSIFY_GROUPS_ALIVE,false);
 //		Handler handler = new StatChangeRateHandler("gsm_call_new.txt","每月通话变化率.txt",0,1,3);
-		Handler handler = new StatClassifyGroupHandler("每月通话变化率.txt","每月通话变化率_分组.txt",4,1,SelectIndex.CLASSIFY_GROUPS_FEE);
-		handler.handle();
+		
+//		GsmCallMergeHandler handler = new GsmCallMergeHandler("bf_gsm_call_201205_format_new.txt","201205内外网数据统计.txt");
+//		handler.handleNew();
+//		StatClassifyGroupHandler handler1 = new StatClassifyGroupHandler(
+//				"201205内外网数据统计.txt","201205内外网数据统计_内网朋友分组.txt",1,7,SelectIndex.CLASSIFY_GROUPS_POSITIVE);
+//		handler1.handle();
+//		
+//		StatClassifyGroupHandler handler = new StatClassifyGroupHandler(
+//				"201205内外网数据统计.txt","201205内外网数据统计_外网朋友分组.txt",2,7,SelectIndex.CLASSIFY_GROUPS_POSITIVE);
+//		handler.handle();
+//		Handler handler = new StatCountTypeHandler("201205内外网数据统计.txt","201205内外网数据统计_离网用户数.txt",7);
+//		handler.handle();
+		StatCountTypeHandler sctHandler = new StatCountTypeHandler("l_user_info_new.txt","客户级别人数.txt",26);
+		sctHandler.handle();
 	}
 	
 	public static void statCountType(String inputFile, String outputFile,Integer countType, Boolean append) throws IOException
