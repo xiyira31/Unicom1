@@ -116,6 +116,14 @@ public class SelectIndex {
 	public static final Integer GSM_CALL_MERGE_FORMAT_DURING_6= 14;
 	public static final Integer GSM_CALL_MERGE_FORMAT_IFVAILD = 15;
 	
+	//bf_gsm_call_201205_format_new
+	public static final Integer GSM_CALL_FORMAT_NEW_USERID = 0;
+	public static final Integer GSM_CALL_FORMAT_NEW_IN_FRIEND = 1;
+	public static final Integer GSM_CALL_FORMAT_NEW_OUT_FRIEND = 2;
+	public static final Integer GSM_CALL_FORMAT_NEW_IN_CALLTIME = 3;
+	public static final Integer GSM_CALL_FORMAT_NEW_OUT_CALLTIME = 4;
+	public static final Integer GSM_CALL_FORMAT_NEW_IN_DURTION = 5;
+	public static final Integer GSM_CALL_FORMAT_NEW_OUT_DURTION = 6;
 	
 	//分组，按照分组
 	public static final Integer[] CLASSIFY_GROUPS_FEE  = 
