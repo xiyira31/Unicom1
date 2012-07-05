@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dmlab.unicom.data.util.DateParser;
 import dmlab.unicom.data.util.SelectIndex;
@@ -47,5 +49,21 @@ public class UserInfoHandler extends Handler{
 		fc.close();
 	}
 	
-
+	public Map vaildMap() throws NumberFormatException, IOException
+	{
+		Map<String, Integer> isVaildMap = new HashMap();
+		String s = null;
+		while((s = fg.readLine()) != null)
+		{
+			String[] as = s.split(SelectIndex.SPLITER);
+			if(as[SelectIndex.USER_INFO_IFVALID].length() > 0)
+				isVaildMap.put(as[SelectIndex.USER_INFO_USERID], 
+					Integer.valueOf(as[SelectIndex.USER_INFO_IFVALID]));
+			else
+				isVaildMap.put(as[SelectIndex.USER_INFO_USERID], 
+						-1);
+		}
+		fg.close();
+		return isVaildMap;
+	}
 }
