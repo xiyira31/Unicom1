@@ -1,10 +1,12 @@
 package dmlab.unicom.data.handle;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
 import dmlab.unicom.data.structer.ServingName;
+import dmlab.unicom.data.util.DateParser;
 import dmlab.unicom.data.util.SelectIndex;
 
 /*
@@ -34,15 +36,39 @@ public class StatCountTypeHandler extends Handler{
 		this.countType = countType;
 	}
 	
+	public void handleMonth() throws IOException, ParseException
+	{
+		Map<String, ServingName> map = new HashMap();
+		String s = null;
+		while((s = fg.readLine()) != null)
+		{
+			String[] as = s.split(SelectIndex.SPLITER);
+			String sDate = as[countType];
+			if(sDate.equals(""))
+				continue;
+			sDate = DateParser.parse(sDate);
+			if(map.containsKey(sDate))
+			{
+				map.get(sDate).increace();
+			}
+			else
+			{
+				ServingName sn = new ServingName(sDate,1);
+				map.put(sDate, sn);
+			}
+		}
+		fc.writeMap(map);
+		fc.close();
+		fg.close();
+	}
+	
 	@Override
 	public void handle() throws IOException {
 		// TODO Auto-generated method stub
 		Map<String, ServingName> map = new HashMap();
 		String s = null;
-		Integer index = 0;
 		while((s = fg.readLine()) !=null)
 		{
-			index++;
 			try{
 			String[] as = s.split(SelectIndex.SPLITER);
 			String servingName = as[countType];
