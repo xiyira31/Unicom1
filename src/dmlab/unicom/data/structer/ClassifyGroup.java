@@ -19,7 +19,7 @@ public class ClassifyGroup {
 	{
 		Integer old = count;
 		Boolean added = false;
-;
+		
 			if(value == null)
 			{
 				if(min == null && max == null)
@@ -72,12 +72,12 @@ public class ClassifyGroup {
 		StringBuilder sb = new StringBuilder();
 		if(min != null)
 		{
-			sb.append(min);
+			sb.append(min+"%");
 		}
-		sb.append(SelectIndex.SPLITER);
+		sb.append(" to ");
 		if(max!=null)
 		{
-			sb.append(max);
+			sb.append(max+"%");
 		}
 		sb.append(SelectIndex.SPLITER);
 		sb.append(count).append(SelectIndex.SPLITER);
