@@ -106,8 +106,8 @@ public class UserInfoStat {
 //		handler.handle();
 //		Handler handler = new StatCountTypeHandler("201205内外网数据统计.txt","201205内外网数据统计_离网用户数.txt",7);
 //		handler.handle();
-		StatCountTypeHandler sctHandler = new StatCountTypeHandler("l_user_info_new.txt","客户级别人数.txt",26);
-		sctHandler.handle();
+//		StatCountTypeHandler sctHandler = new StatCountTypeHandler("l_user_info_new.txt","客户级别人数.txt",26);
+//		sctHandler.handle();
 	}
 	
 	public static void statCountType(String inputFile, String outputFile,Integer countType, Boolean append) throws IOException

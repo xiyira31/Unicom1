@@ -10,9 +10,10 @@ public class SelectIndex {
 	
 	public static final String SPLITER = ",";
 	public final static String INPUTPATH="D:\\HothandPotato\\阿坝联通\\新建文件夹 (2)\\";
-	public final static String OUTPUTPATH="D:\\HothandPotato\\阿坝联通\\新建文件夹 (2)\\output\\";
+	public final static String OUTPUTPATH="D:\\HothandPotato\\阿坝联通\\新建文件夹 (2)\\output08-12\\";
 	public final static Integer COMPARE_MONTH = 1;
 	public final static String nDate = "31-05月-12";
+	public final static String limitDate = "01-01月-12"; 
 	
 	//用户信息表 l_user_info_new
 	public static final Integer USER_INFO_SERVICEID = 0;

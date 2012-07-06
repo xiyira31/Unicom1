@@ -20,6 +20,7 @@ import dmlab.unicom.data.handle.GatherFeeHandler;
 import dmlab.unicom.data.handle.GsmCallHandler;
 import dmlab.unicom.data.handle.GsmCallMergeHandler;
 import dmlab.unicom.data.handle.Handler;
+import dmlab.unicom.data.handle.StatOffRateHandler;
 import dmlab.unicom.data.handle.UserAliveTimeHandler;
 import dmlab.unicom.data.handle.UserInfoHandler;
 import dmlab.unicom.data.structer.GatherFee;
@@ -50,7 +51,7 @@ public class Test {
 //		handler.handle();
 //		handler = new GsmCallHandler("bf_gsm_call_201201.txt","gsm_call_new.txt",true);
 //		handler.handle();
-//		handler = new GsmCallHandler("bf_gsm_call_201112.txt","gsm_call_new.txt",true);
+//		Handler handler = new GsmCallHandler("bf_gsm_call_201112.txt","gsm_call_new.txt",true);
 //		handler.handle();
 //		handler = new GsmCallHandler("bf_gsm_call_201111.txt","gsm_call_new.txt",true);
 //		handler.handle();
@@ -78,6 +79,8 @@ public class Test {
 //		handleGatherFee("bf_gather_fee_t.txt", "clear_gather_fee_2012.txt", false);
 //		handlePayFee("l_pay_fee.txt","pay_fee.txt",false);
 //		handleGsmCallMerge("bf_gsm_call_merge_format_new.txt","bf_gsm_call_merge_format_with_rate.txt",false);
+		Handler handler = new StatOffRateHandler("l_user_info_new.txt","[8-12]VIP.txt",SelectIndex.USER_INFO_VIPNAME);
+		handler.handle();
 	}
 	//处理USERINFO
 	private static void handleUserInfo(String inputFile, String outputFile, Boolean append) throws IOException

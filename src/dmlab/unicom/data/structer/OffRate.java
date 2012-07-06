@@ -28,7 +28,7 @@ public class OffRate {
 	{
 		
 		Integer rate = (offCount*100)/total;
-		return name+","+total.toString()+","+offCount.toString()+","+rate.toString()+"%";
+		return name+","+total.toString()+","+offCount.toString()+","+rate.toString()+"";
 	}
 
 }

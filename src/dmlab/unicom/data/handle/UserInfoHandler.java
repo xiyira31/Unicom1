@@ -66,4 +66,40 @@ public class UserInfoHandler extends Handler{
 		fg.close();
 		return isVaildMap;
 	}
+	
+	public Map vaildMapWithLimit(Date date) throws IOException, ParseException
+	{
+		Map<String, Integer> isVaildMap = new HashMap();
+		String s = null;
+		while((s = fg.readLine()) != null)
+		{
+			String[] as = s.split(SelectIndex.SPLITER);
+			String userid = as[SelectIndex.USER_INFO_USERID];
+			String invalid = as[SelectIndex.USER_INFO_INVALIDDATE];
+			String apply = as[SelectIndex.USER_INFO_APPLYDATE];
+			
+			Date applyDate = DateParser.parseDate(apply);
+			if(applyDate.after(date))
+				continue;
+			if(invalid.length() == 0)
+			{
+				isVaildMap.put(userid, 1);
+			}
+			else
+			{
+				Date invalidDate = DateParser.parseDate(invalid);
+				if(invalidDate.before(date))
+				{
+					isVaildMap.put(userid, 0);
+				}
+				else
+				{
+					isVaildMap.put(userid, 1);
+				}
+			}			
+		}		
+		fg.close();
+		fc.close();
+		return isVaildMap;
+	}
 }
